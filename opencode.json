@@ -1,0 +1,141 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugins": [
+    {
+      "package": "headroom-opencode",
+      "options": {
+        "proxyUrl": "http://127.0.0.1:8787"
+      }
+    },
+    "@dietrichgebert/ponytail"
+  ],
+  "model": "openai/gpt-6.1-sol",
+  "mcp": {
+    "servers": {
+      "routerai": {
+        "type": "remote",
+        "url": "https://routerai.ru/api/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {file:/home/braam/.config/opencode/credentials/routerai-authorization}"
+        },
+        "oauth": false
+      },
+      "github": {
+        "type": "remote",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "oauth": false,
+        "headers": {
+          "Authorization": "Bearer {file:~/.config/opencode/.secrets/github-pat}"
+        }
+      },
+      "youtrack": {
+        "type": "remote",
+        "url": "https://wasdasdwsdwadwas.website/mcp",
+        "headers": {
+          "Authorization": "{file:/home/braam/.config/opencode/credentials/youtrack-authorization}"
+        },
+        "oauth": false
+      },
+      "notion": {
+        "type": "remote",
+        "url": "https://mcp.notion.com/mcp"
+      }
+    }
+  },
+  "providers": {
+    "routerai": {
+      "name": "RouterAI",
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "settings": {
+	"apiKey": "{file:/home/braam/.config/opencode/credentials/routerai-authorization}",
+        "baseURL": "https://routerai.ru/api/v1"
+      },
+      "models": {
+        "xiaomi/mimo-v2.6-pro": {
+          "name": "MiMo-V2.6-Pro",
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "limit": {
+            "context": 1050000
+          }
+        },
+        "openai/gpt-6-luna": {
+          "name": "GPT-6 Luna",
+          "capabilities": {
+            "tools": true,
+            "input": ["image", "text"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "limit": {
+            "context": 1050000
+          }
+        },
+        "openai/gpt-6.1-sol": {
+          "name": "GPT-6.1 Sol",
+          "capabilities": {
+            "tools": true,
+            "input": ["image", "text"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "limit": {
+            "context": 1050000
+          }
+        },
+        "deepseek/deepseek-v4.1-flash": {
+          "name": "DeepSeek V4.1 Flash",
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "limit": {
+            "context": 1048576
+          }
+        },
+        "z-ai/glm-5.3-flash": {
+          "name": "GLM-5.3 Flash",
+          "capabilities": {
+            "tools": true,
+            "input": ["text"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "limit": {
+            "context": 1048576
+          }
+        },
+        "mistralai/mistral-large-4-0": {
+          "name": "Mistral Large 4",
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "limit": {
+            "context": 1048576
+          }
+        }
+      }
+    }
+  }
+}
